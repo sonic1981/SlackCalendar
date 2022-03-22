@@ -3,8 +3,10 @@ package SlackCalender
 import (
 	"encoding/json"
 	"flag"
+	"fmt"
 	"io"
 	"net/http"
+	"net/http/httputil"
 	"time"
 )
 
@@ -72,6 +74,11 @@ func GetChannels() []byte {
 
 	token := *flag.String("t", "", "The Slack Token required to access slack.")
 
+	if token == "" {
+
+		panic("No Slack Token provided")
+	}
+
 	req, err := http.NewRequest("GET", "https://slack.com/api/conversations.list", nil)
 
 	req.Header.Set("Authorization", token)
@@ -89,6 +96,10 @@ func GetChannels() []byte {
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
+
+	b, err := httputil.DumpResponse(resp, true)
+
+	fmt.Println(string(b))
 
 	return body
 }

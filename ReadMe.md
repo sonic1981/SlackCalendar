@@ -1,10 +1,11 @@
 # Basic inductions reminder
 
-## Running
+## Debug
+
+Just click the `run and Debug` button in VS code
+
+## CURL
 
 ```sh
-cd cmd
-fresh
+curl http//localhost:1981
 ```
-
-[details](https://github.com/gravityblast/fresh)

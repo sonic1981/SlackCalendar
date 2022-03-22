@@ -9,5 +9,13 @@ import (
 func HelloWorld(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Hello, World!\n")
 
-	GetChannels()
+	channels := GetChannelsObj()
+
+	for index, element := range channels.Channels {
+
+		fmt.Println(index, element.Name)
+
+	}
+
+	fmt.Fprint(w, "Done!\n")
 }
